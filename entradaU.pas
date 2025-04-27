@@ -117,7 +117,7 @@ begin
       ShowMessage(Mensagem);
     end
     else
-      ShowMessage('Nenhum evento para hoje (' + DataStr + ').');
+      //ShowMessage('Nenhum evento para hoje (' + DataStr + ').');
   finally
     EventosHoje.Free;
   end;
