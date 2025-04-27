@@ -2,8 +2,8 @@ object Atendimentos: TAtendimentos
   Left = 0
   Top = 0
   Caption = 'Atendimentos'
-  ClientHeight = 687
-  ClientWidth = 1184
+  ClientHeight = 728
+  ClientWidth = 1188
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -54,7 +54,6 @@ object Atendimentos: TAtendimentos
     Top = 5
     Width = 991
     Height = 671
-    RzDataCenter = dcConsulta
     AutoPosGrade = False
     MultiColorFont.Charset = DEFAULT_CHARSET
     MultiColorFont.Color = clWhite
@@ -84,7 +83,6 @@ object Atendimentos: TAtendimentos
         Visible = True
       end>
     Color = clWindow
-    DataSource = dsConsulta
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -148,96 +146,9 @@ object Atendimentos: TAtendimentos
       OnClick = miSairClick
     end
   end
-  object qConsulta: TRzQuery
-    Connection = cBanco
-    SQL.Strings = (
-      
-        'SELECT ListaAtendimento.Sequencia, ListaAtendimento.CodCli, Clie' +
-        'ntes.Cliente, ListaAtendimento.Contato,'
-      'ListaAtendimento.DataHoraEdit, ListaAtendimento.Atendido'
-      'FROM ListaAtendimento'
-      'LEFT JOIN Clientes ON Clientes.CodCli = ListaAtendimento.CodCli'
-      'WHERE ListaAtendimento.Atendido = 0'
-      'ORDER BY ListaAtendimento.DataHoraInsert DESC')
-    Params = <>
-    AutoCreateFields = False
-    RzDataCenter = dcConsulta
-    Left = 1078
-    Top = 593
-    object qConsultaSequencia: TIntegerField
-      FieldName = 'Sequencia'
-      Required = True
-    end
-    object qConsultaCodCli: TIntegerField
-      FieldName = 'CodCli'
-    end
-    object qConsultaCliente: TStringField
-      FieldName = 'Cliente'
-      Required = True
-      Size = 60
-    end
-    object qConsultaContato: TStringField
-      FieldName = 'Contato'
-      Size = 50
-    end
-    object qConsultaDataHoraEdit: TDateTimeField
-      FieldName = 'DataHoraEdit'
-    end
-    object qConsultaAtendido: TBooleanField
-      FieldName = 'Atendido'
-    end
-  end
-  object dsConsulta: TDataSource
-    DataSet = qConsulta
-    Left = 1047
-    Top = 592
-  end
-  object cBanco: TRzConnection
-    ControlsCodePage = cGET_ACP
-    UTF8StringsAsWideField = True
-    Properties.Strings = (
-      'controls_cp=GET_ACP')
-    HostName = 'DBSERVER2.RZSISTEMAS.COM.BR'
-    Port = 6065
-    Database = '146-Rz_Erp_RzSistemas'
-    User = '146-rz'
-    Password = 'bnu@2020'
-    Protocol = 'FreeTDS_MsSQL>=2005'
-    LibraryLocation = 'C:\Vis'#227'o_Futura\Agenda_Eventos\MsSql.dll'
-    LogSqlEnabled = False
-    LogRzMsSql = False
-    Left = 1044
-    Top = 647
-  end
-  object dcConsulta: TRzDataCenter
-    Connection = cBanco
-    DataBaseProtocol = DbpSQLServer
-    UserTable = dsConsulta
-    UserModulos = dsConsulta
-    Modulos = dsConsulta
-    PathManager = pmConsulta
-    RzMetaData = RzMetadata1
-    Left = 1084
-    Top = 647
-  end
-  object pmConsulta: TRzPathManager
-    ApGroup = TRzErp
-    AutoInstallDAO = False
-    InstallDirNivel = 1
-    ServerPort = 0
-    Customizacao = False
-    Left = 1116
-    Top = 646
-  end
-  object RzMetadata1: TRzMetadata
-    Connection = cBanco
-    Params = <>
-    Left = 1148
-    Top = 647
-  end
   object TimerNovosChamados: TTimer
     OnTimer = TimerNovosChamadosTimer
-    Left = 1014
-    Top = 593
+    Left = 1066
+    Top = 592
   end
 end
