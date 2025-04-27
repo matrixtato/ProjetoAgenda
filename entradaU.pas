@@ -34,50 +34,6 @@ uses
 
 {$R *.dfm}
 
-{procedure TEntrada.FormCreate(Sender: TObject);
-var
-  EventosHoje: TStringList;
-  DataStr: string;
-  i: Integer;
-  Mensagem: string;
-  Arquivo: TextFile;
-begin
-  // Verifica eventos para o dia atual e exibe mensagem
-  EventosHoje := TStringList.Create;
-  try
-    DataStr := FormatDateTime('dd/mm/yyyy', Trunc(Now));
-    if FileExists('eventos.txt') then
-    begin
-      AssignFile(Arquivo, 'eventos.txt');
-      try
-        Reset(Arquivo);
-        while not EOF(Arquivo) do
-        begin
-          ReadLn(Arquivo, Mensagem);
-          if (Trim(Mensagem) <> '') and (Pos(DataStr + ':', Mensagem) = 1) then
-            EventosHoje.Add(Copy(Mensagem, Length(DataStr) + 2, MaxInt));
-        end;
-      except
-        on E: Exception do
-          ShowMessage('Erro ao verificar eventos de hoje: ' + E.Message);
-      end;
-      CloseFile(Arquivo);
-    end;
-
-    if EventosHoje.Count > 0 then
-    begin
-      Mensagem := 'Eventos de hoje (' + DataStr + '):' + #13#10;
-      for i := 0 to EventosHoje.Count - 1 do
-        Mensagem := Mensagem + '- ' + EventosHoje[i] + #13#10;
-      ShowMessage(Mensagem);
-    end
-    else
-      ShowMessage('Nenhum evento para hoje (' + DataStr + ').');
-  finally
-    EventosHoje.Free;
-  end;
-end;   }
-
 procedure TEntrada.FormCreate(Sender: TObject);
 var
   EventosHoje: TStringList;
@@ -145,43 +101,5 @@ procedure TEntrada.btnOrdemClick(Sender: TObject);
 begin
   AbrirForma(TForm(Atendimentos), TAtendimentos);
 end;
-
-{procedure TEntrada.btnOrdemClick(Sender: TObject);
-begin
-  if Assigned(Atendimentos) then
-  begin
-    Atendimentos.Show;
-    Entrada.Hide;
-  end
-  else
-  begin
-    Atendimentos := TAtendimentos.Create(nil);
-    Atendimentos.Show;
-    Entrada.Hide;
-  end;
-end;
-
-procedure TEntrada.btnCalendarioClick(Sender: TObject);
-begin
-  if Assigned(fAgenda) then
-  begin
-    fAgenda.Show;
-    Entrada.Hide;
-  end
-  else
-  begin
-    fAgenda := TfAgenda.Create(nil);
-    fAgenda.Show;
-    Entrada.Hide;
-  end;
-end;
-
-procedure TEntrada.btnCalendarioClick(Sender: TObject);
-begin
-  if not Assigned(fAgenda) then
-    fAgenda := TfAgenda.Create(Entrada); // Entrada como Owner
-  fAgenda.Show;
-  Entrada.Hide;
-end; }
 
 end.

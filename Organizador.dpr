@@ -12,7 +12,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TEntrada, Entrada);
-  //Application.CreateForm(TfAgenda, fAgenda);
-  //Application.CreateForm(TAtendimentos, Atendimentos);
   Application.Run;
 end.
